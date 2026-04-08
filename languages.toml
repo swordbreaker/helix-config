@@ -61,7 +61,7 @@ formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path
 language-servers = [
   "vue-language-server",
   "typescript-language-server",
-  "tailwindcss"
+  "tailwindcss",
   # "vscode-html-language-server",
   # "vscode-css-language-server",
   "biome"
