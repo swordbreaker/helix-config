@@ -1,0 +1,101 @@
+
+[[language]]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+auto-format = true
+file-types = ["tsx"]
+name = "tsx"
+scope = "source.tsx"
+
+[[language]]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+auto-format = true
+file-types = ["ts", "mts"]
+name = "typescript"
+scope = "source.ts"
+
+[[language]]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+auto-format = true
+file-types = ["jsx"]
+name = "jsx"
+scope = "source.jsx"
+
+[[language]]
+auto-format = true
+file-types = ["js", "mjs", "cjs"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "javascript"
+scope = "source.javascript"
+
+[[language]]
+auto-format = true
+file-types = ["css"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "css"
+scope = "source.css"
+
+[[language]]
+auto-format = true
+file-types = ["scss"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "scss"
+scope = "source.scss"
+
+[[language]]
+auto-format = true
+file-types = ["less"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "less"
+scope = "source.less"
+
+[[language]]
+auto-format = true
+file-types = ["html"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "html"
+scope = "source.html"
+
+[[language]]
+auto-format = true
+file-types = ["json"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "json"
+scope = "source.json"
+
+[[language]]
+auto-format = true
+file-types = ["yaml"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "yaml"
+scope = "source.yaml"
+
+[[language]]
+auto-format = true
+file-types = ["md"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+name = "markdown"
+scope = "source.markdown"
+
+[[language]]
+auto-format = true
+file-types = ["vue"]
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+language-servers = [
+  "vue-language-server",
+  "typescript-language-server",
+  "vscode-html-language-server",
+  "vscode-css-language-server",
+]
+name = "vue"
+scope = "source.vue"
+
+[language-server.vue-language-server]
+args = ["--stdio"]
+command = "@vue/language-server"
+
+[language-server.typescript-language-server.config]
+plugins = [
+  { name = "@vue/typescript-plugin", location = "@vue/language-server", languages = [
+    "vue",
+  ] },
+]

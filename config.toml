@@ -1,0 +1,27 @@
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
+# [editor.file-explorer]
+# hidden = false
+# git-ignore = false
+
+[editor.auto-save]
+focus-lost = true
+
+[editor.whitespace]
+render = "all"
+
+[editor.indent-guides]
+render = true
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
