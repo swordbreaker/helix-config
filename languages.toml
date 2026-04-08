@@ -1,20 +1,19 @@
-
 [[language]]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 auto-format = true
 file-types = ["tsx"]
 name = "tsx"
 scope = "source.tsx"
 
 [[language]]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 auto-format = true
 file-types = ["ts", "mts"]
 name = "typescript"
 scope = "source.ts"
 
 [[language]]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 auto-format = true
 file-types = ["jsx"]
 name = "jsx"
@@ -23,79 +22,73 @@ scope = "source.jsx"
 [[language]]
 auto-format = true
 file-types = ["js", "mjs", "cjs"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "javascript"
 scope = "source.javascript"
 
 [[language]]
 auto-format = true
 file-types = ["css"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "css"
 scope = "source.css"
 
 [[language]]
 auto-format = true
-file-types = ["scss"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
-name = "scss"
-scope = "source.scss"
-
-[[language]]
-auto-format = true
-file-types = ["less"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
-name = "less"
-scope = "source.less"
-
-[[language]]
-auto-format = true
 file-types = ["html"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "html"
 scope = "source.html"
 
 [[language]]
 auto-format = true
 file-types = ["json"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "json"
 scope = "source.json"
 
 [[language]]
 auto-format = true
-file-types = ["yaml"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
-name = "yaml"
-scope = "source.yaml"
-
-[[language]]
-auto-format = true
 file-types = ["md"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "markdown"
 scope = "source.markdown"
 
 [[language]]
 auto-format = true
 file-types = ["vue"]
-formatter = { command = "biome", args = ["format", "--stdin-file-path", "%%"] }
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 language-servers = [
   "vue-language-server",
   "typescript-language-server",
-  "vscode-html-language-server",
-  "vscode-css-language-server",
+  "tailwindcss"
+  # "vscode-html-language-server",
+  # "vscode-css-language-server",
+  "biome"
 ]
 name = "vue"
 scope = "source.vue"
 
 [language-server.vue-language-server]
 args = ["--stdio"]
-command = "@vue/language-server"
+command = "vue-language-server"
+
+[language-server.vue-language-server.config]
+vue = { hybridMode = false }
 
 [language-server.typescript-language-server.config]
 plugins = [
-  { name = "@vue/typescript-plugin", location = "@vue/language-server", languages = [
+  { name = "@vue/typescript-plugin", location = "vue-language-server", languages = [
     "vue",
   ] },
 ]
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language-server.tailwindcss]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+root-pattern = ["tailwind.config.js", "tailwind.config.cjs", "postcss.config.js"]
+file-types = ["html", "css", "javascript", "typescript", "jsx", "tsx", "vue"]
