@@ -46,6 +46,10 @@ file-types = ["json"]
 formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "json"
 scope = "source.json"
+language-servers = [
+  "vscode-json-language-server",
+  "deps-lsp"
+]
 
 [[language]]
 auto-format = true
@@ -53,6 +57,10 @@ file-types = ["md"]
 formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "markdown"
 scope = "source.markdown"
+
+[[language]]
+name = "toml"
+language-servers = ["deps-lsp"]
 
 [[language]]
 auto-format = true
@@ -103,3 +111,7 @@ command = "tailwindcss-language-server"
 args = ["--stdio"]
 root-pattern = ["tailwind.config.js", "tailwind.config.cjs", "postcss.config.js"]
 file-types = ["html", "css", "javascript", "typescript", "jsx", "tsx", "vue"]
+
+[language-server.deps-lsp]
+command = "deps-lsp"
+args = ["--stdio"]

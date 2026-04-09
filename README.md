@@ -4,7 +4,7 @@
 ## Install
 
 ### Vue
-```
+```sh
 bun add -g @tailwindcss/language-server typescript typescript-language-server @vue/typescript-plugin vscode-langservers-extracted @biomejs/biome
 ```
 
@@ -32,7 +32,12 @@ bun add -g @tailwindcss/language-server typescript typescript-language-server @v
 ```json
 
 ### Python
-```
+```sh
 uv tool install ty@latest
 uv tool install ruff@latest
+```
+
+### Dependecy Managment
+```sh
+cargo install deps-lsp
 ```
