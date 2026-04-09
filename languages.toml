@@ -91,6 +91,16 @@ language-servers = [
   "harper-ls",
 ]
 
+[[language]]
+name = "env-spec"
+scope = "source.env-spec"
+file-types = [
+  { glob = ".env.schema" },
+  { glob = ".env.*.schema" },
+]
+comment-token = "#"
+language-servers = ["varlock-lsp"]
+
 # Language server configurations
 
 [language-server.biome]
@@ -136,3 +146,6 @@ provideFormatter = false
 [language-server.vscode-html-language-server]
 command = "vscode-html-language-server"
 args = ["--stdio"]
+
+[language-server.varlock-lsp]
+command = "varlock-lsp"
