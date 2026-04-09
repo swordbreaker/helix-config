@@ -59,30 +59,41 @@ auto-format = true
 file-types = ["vue"]
 formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 language-servers = [
-  "vue-language-server",
+  # "vuels",
   "typescript-language-server",
   "tailwindcss",
-  # "vscode-html-language-server",
-  # "vscode-css-language-server",
+  "vscode-html-language-server",
+  "vscode-css-language-server",
   "biome"
 ]
 name = "vue"
 scope = "source.vue"
 
-[language-server.vue-language-server]
+[language-server.typescript-language-server]
+command = "typescript-language-server"
 args = ["--stdio"]
-command = "vue-language-server"
-
-[language-server.vue-language-server.config]
-vue = { hybridMode = false }
 
 [language-server.typescript-language-server.config]
-plugins = [
-  { name = "@vue/typescript-plugin", location = "vue-language-server", languages = [
-    "vue",
-  ] },
-]
+hostInfo = "helix"
 
+[language-server.typescript-language-server.config.typescript]
+tsdk = "/usr/lib/node_modules/typescript/lib"
+
+[[language-server.typescript-language-server.config.plugins]]
+name = "@vue/typescript-plugin"
+location = "/usr/lib/node_modules/@vue/typescript-plugin"
+languages = ["vue"]
+
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server.config]
+provideFormatter = false
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
