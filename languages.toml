@@ -1,81 +1,115 @@
-[[language]]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
-auto-format = true
-file-types = ["tsx"]
-name = "tsx"
-scope = "source.tsx"
+# Language configurations
 
 [[language]]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
-auto-format = true
-file-types = ["ts", "mts"]
-name = "typescript"
-scope = "source.ts"
-
-[[language]]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
-auto-format = true
-file-types = ["jsx"]
-name = "jsx"
-scope = "source.jsx"
-
-[[language]]
-auto-format = true
-file-types = ["js", "mjs", "cjs"]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
-name = "javascript"
-scope = "source.javascript"
-
-[[language]]
-auto-format = true
-file-types = ["css"]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "css"
 scope = "source.css"
+file-types = ["css"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["vscode-css-language-server", "harper-ls"]
 
 [[language]]
-auto-format = true
-file-types = ["html"]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "html"
 scope = "source.html"
+file-types = ["html"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["vscode-html-language-server", "harper-ls"]
 
 [[language]]
+name = "javascript"
+scope = "source.javascript"
+file-types = ["js", "mjs", "cjs"]
 auto-format = true
-file-types = ["json"]
 formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["typescript-language-server", "harper-ls"]
+
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+file-types = ["jsx"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["typescript-language-server", "harper-ls"]
+
+[[language]]
 name = "json"
 scope = "source.json"
-language-servers = [
-  "vscode-json-language-server",
-  "deps-lsp"
-]
+file-types = ["json"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["vscode-json-language-server", "harper-ls", "deps-lsp"]
 
 [[language]]
-auto-format = true
-file-types = ["md"]
-formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 name = "markdown"
 scope = "source.markdown"
+file-types = ["md"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["marksman", "markdown-oxide", "harper-ls"]
+
+[[language]]
+name = "text"
+scope = "source.text"
+file-types = ["txt"]
+language-servers = ["harper-ls"]
 
 [[language]]
 name = "toml"
-language-servers = ["deps-lsp"]
+scope = "source.toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+language-servers = ["deps-lsp", "harper-ls"]
 
 [[language]]
+name = "tsx"
+scope = "source.tsx"
+file-types = ["tsx"]
 auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["typescript-language-server", "harper-ls"]
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+file-types = ["ts", "mts"]
+auto-format = true
+formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
+language-servers = ["typescript-language-server", "harper-ls"]
+
+[[language]]
+name = "vue"
+scope = "source.vue"
 file-types = ["vue"]
+auto-format = true
 formatter = { command = "biome", args = ["format", "--write", "--stdin-file-path", "%{buffer_name}"] }
 language-servers = [
-  # "vuels",
   "typescript-language-server",
   "tailwindcss",
   "vscode-html-language-server",
   "vscode-css-language-server",
-  "biome"
+  "biome",
+  "harper-ls",
 ]
-name = "vue"
-scope = "source.vue"
+
+# Language server configurations
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language-server.deps-lsp]
+command = "deps-lsp"
+args = ["--stdio"]
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.tailwindcss]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+root-pattern = ["tailwind.config.js", "tailwind.config.cjs", "postcss.config.js"]
+file-types = ["html", "css", "javascript", "typescript", "jsx", "tsx", "vue"]
 
 [language-server.typescript-language-server]
 command = "typescript-language-server"
@@ -92,26 +126,13 @@ name = "@vue/typescript-plugin"
 location = "/usr/lib/node_modules/@vue/typescript-plugin"
 languages = ["vue"]
 
-[language-server.vscode-html-language-server]
-command = "vscode-html-language-server"
-args = ["--stdio"]
-
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
 args = ["--stdio"]
 
 [language-server.vscode-css-language-server.config]
 provideFormatter = false
-[language-server.biome]
-command = "biome"
-args = ["lsp-proxy"]
 
-[language-server.tailwindcss]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
-root-pattern = ["tailwind.config.js", "tailwind.config.cjs", "postcss.config.js"]
-file-types = ["html", "css", "javascript", "typescript", "jsx", "tsx", "vue"]
-
-[language-server.deps-lsp]
-command = "deps-lsp"
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
 args = ["--stdio"]
