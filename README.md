@@ -30,7 +30,7 @@ bun add -g @tailwindcss/language-server typescript typescript-language-server @v
           },
     ],
 }
-```json
+```
 
 ### Python
 ```sh
